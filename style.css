@@ -1,0 +1,51 @@
+.body-text {
+    margin:2vw;
+    font-size: 1.5vw;
+}
+
+#site-title-text {
+    text-align:center;
+    font-size: 3vw;
+    margin-bottom: .5vw;
+}
+
+#parameters {
+    text-align: center;
+}
+
+.row {
+    display:flex;
+}
+
+.col {
+    flex: 1;
+    padding-bottom: 2.25vw;
+}
+
+.row, .col {
+    border: solid black;
+}
+
+p {
+    margin-bottom: 0vw;
+    margin-top:.5vw;
+    font-size: 1vw;
+}
+
+h3 {
+    font-size: 1.5vw;
+    text-align: center;
+}
+
+button {
+    font-size: large;
+    background-color: transparent;
+}
+
+button:hover {
+    color: rgb(87, 87, 87);
+}
+
+button:active {
+    color: rgb(134, 134, 134);
+}

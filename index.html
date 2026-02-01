@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<head>
+    <title>Default Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="main()">
+    <script src="specs.js"></script>
+    <script src="index.js"></script>
+    <script src="./storyGen.js"></script>
+    <script src="partsOfSpeech.js"></script>
+
+    <div style="margin-right:50vw;">
+    <div id="site-title-text"></div>
+    <div id="parameters">
+        <div class="row">
+            <div class="col">
+                <h3>Plot Point Lengths</h3>
+                <p>Exposition<br><input type="number" name="exp" id="exp-weight" min="0" max="1" step="0.01" value="0"></p>
+                <p>Rising Action<br><input type="number" name="ris" id="ris-weight" min="0" max="1" step="0.01" value="0"></p>
+                <p>Climax<br><input type="number" name="cli" id="cli-weight" min="0" max="1" step="0.01" value="0"></p>
+                <p>Resolution<br><input type="number" name="res" id="res-weight" min="0" max="1" step="0.01" value="0"></p>
+            </div>
+            <div class="col">
+                <h3>Sentence Structure</h3>
+                <p>Descriptiveness<br><input type="range" id="descript" min="0" max="1" value=".5" step=".01"></p>
+                <p>Lung Capacity<br><input type="range" id="lung-cap" min="0" max="1" value=".5" step=".01"></p>
+            </div>
+            <div class="col">
+                <h3>Story Details</h3>
+                <p>Story Length<br><input type="range" id="num-sent" min="2" max="20" value="10"></p>
+                <p>Genre<br>
+                    <select id="genre">
+                        <option value="fantasy">Fantasy</option>
+                        <option value="romance">Romance</option>
+                        <option value="horror">Horror</option>
+                        <option value="kids">Kids</option>
+                    </select>
+                </p>
+                <p>Genre Intensity<br><input type="range" id="genre-int" min="0" max="1" value=".5" step="0.01"></p>
+                <br>
+                <button type="button" id="gen-story">Generate Story</button>
+            </div>
+        </div>
+    </div>
+    <div style="border:solid black; margin:2vw;">
+        <div>
+            <h3>Exposition</h3>
+            <div class="body-text" id="exp-text"></div>
+        </div><br>
+        <div>
+            <h3>Rising Action</h3>
+            <div class="body-text" id="ris-text"></div>
+        </div><br>
+        <div>
+            <h3>Climax</h3>
+            <div class="body-text" id="cli-text"></div>
+        </div><br>
+        <div>
+            <h3>Falling Action / Resolution</h3>
+            <div class="body-text" id="res-text"></div>
+        </div>
+    </div>
+    </div>
+</body>
