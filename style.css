@@ -19,7 +19,6 @@
 
 .col {
     flex: 1;
-    padding-bottom: 2.25vw;
 }
 
 .row, .col {
@@ -35,6 +34,10 @@ p {
 h3 {
     font-size: 1.5vw;
     text-align: center;
+}
+
+h4 {
+    font-size: 1.25vw;
 }
 
 button {
