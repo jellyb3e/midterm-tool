@@ -101,7 +101,7 @@ const ACTION_LIB = [
         },
         text: {
             [GENRE.FANTASY]: ["Now armed with the {weapon}, {protag} travels to the {adj_place}{antag_location} in search of {antag}."],
-            [GENRE.HORROR]: ["Now armed with {weapon}, {protag} travels to the {adj_place}{antag_location} in search of {antag}."]        
+            [GENRE.HORROR]: ["Now armed with the {weapon}, {protag} travels to the {adj_place}{antag_location} in search of {antag}."]        
         }
     },
     {
