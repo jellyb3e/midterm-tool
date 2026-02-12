@@ -1,79 +1,37 @@
-let plot_weights = {
-    exp: 0,  // percentage of story dedicated to each plot point
-    ris : 0,
-    cli : 0,
-    res : 0,   // falling action and resolution are combined :]
-};
-
 function main() {
-    console.log("Loaded function main");
-    const title = document.getElementById("site-title-text");
-
-    document.title = siteTitle
-    title.textContent = siteTitle;
-
-    fetchDocumentElements();
+    fetch_param_elements();
 }
 
-function fetchDocumentElements() {
-    const exp = document.getElementById("exp-weight");
-    const ris = document.getElementById("ris-weight");
-    const cli = document.getElementById("cli-weight");
-    const res = document.getElementById("res-weight");
+function fetch_param_elements() {
+    const genre_el = document.getElementById("genre");
+    const descript_el = document.getElementById("descript");
+    const genre_intensity_el = document.getElementById("genre-int");
+
     const submit = document.getElementById("gen-story");
-    const storySent = document.getElementById("num-sent");
-    const desc = document.getElementById("descript");
-    const lungCap = document.getElementById("lung-cap");
-    const genreInt = document.getElementById("genre-int");
-    const genreChoice = document.getElementById("genre");
 
-    exp.addEventListener("input", () => {checkInput(exp);});
-    ris.addEventListener("input", () => {checkInput(ris);});
-    cli.addEventListener("input", () => {checkInput(cli);});
-    res.addEventListener("input", () => {checkInput(res);});
     submit.addEventListener("click",() => {
-        normalizeWeights();
-        story_length = parseFloat(storySent.value);
-        descriptiveness = parseFloat(desc.value);
-        lung_capacity = parseFloat(lungCap.value);
-        genreIntensity = parseFloat(genreInt.value);
-        genre = genreChoice.value;
-        console.log(genre);
+        descriptiveness = parseFloat(descript_el.value);
+        genre_intensity = parseFloat(genre_intensity_el.value);
+        selected_genre = genre_el.value;
 
-        distributeSentences();
-        generateStory();
+        generate_fantasy_name();
+        generate_story();
     });
 }
 
-function checkInput(el) {
-    const val = parseFloat(el.value);
-    const min = parseFloat(el.min);
-    const max = parseFloat(el.max);
+function generate_story() {
+    set_initial_state();
+    const world_details = generate_details();
+    const available_actions = filter_actions_by_genre();
+    const goal = rand_in_array(GENRE_GOALS[selected_genre]);
+    console.log(goal);
+    const plot = generate_plot(goal, state, available_actions);
 
-    if (val < min) {
-        el.value = el.min;
-    } else if (val > max) {
-        el.value = el.max;
-    } else {
-        plot_weights[el.name] = val;
+    if (!plot) {
+        console.log("Plot generation failed.");
+        return;
     }
-}
 
-function normalizeWeights() {
-    let total = 0;
-    for (let weight in plot_weights) {
-        total += plot_weights[weight];
-    }
-    
-    if (total == 1) {return;}
-    else if (total == 0) {
-        plot_weights.exp = .25;
-        plot_weights.ris = .4;
-        plot_weights.cli = .2;
-        plot_weights.res = .15;
-    } else {
-        for (let weight in plot_weights) {
-            plot_weights[weight] /= total;
-        }
-    }
+    const structure = group_by_plot_point(plot, available_actions);
+    skin(structure, available_actions, world_details);
 }
