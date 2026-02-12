@@ -311,8 +311,8 @@ const LANGUAGE = {
             weapon: ["nice", "cute", "fun", "weird", "normal", "uninteresting", "boring", "unusual", "interesting"]
         },
         adverbs: {
-            character: ["valiantly", "fiercely", "forcefully"],
-            movement: ["quietly", "swiftly"]
+            character: ["oddly","creepily","sweetly","funnily","generously"],
+            movement: ["quietly", "swiftly", "quickly", "loudly", "erratically", "haphazardly"]
         }
     },
     [GENRE.FANTASY]: {
