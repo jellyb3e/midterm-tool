@@ -13,7 +13,7 @@ if this is your goal.
 
 ## How to Run the Tool
 The tool can be found here:
-[text]https://jellyb3e.github.io/midterm-tool/
+[Right here!](https://jellyb3e.github.io/midterm-tool/)
 
 ## Parameters
 
@@ -47,4 +47,5 @@ Example outputs (images, text samples, or links).
 Known limitations (what the tool does not do yet or where it breaks).
 
 ## Example Outputs
-[text](https://docs.google.com/document/d/1vlmw25d9jGAdlUfym82PtkABgN4TyHc9EoYZ32au-yQ/edit?usp=sharing)
+Example outputs can be found here:
+[Right here!](https://docs.google.com/document/d/1vlmw25d9jGAdlUfym82PtkABgN4TyHc9EoYZ32au-yQ/edit?usp=sharing)
