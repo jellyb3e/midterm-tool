@@ -15,6 +15,16 @@
             <div id="site-title-text"></div>
             <div class="row" id="parameters">
                 <div class="col">
+                    <h3>Character Names</h3>
+                    <p>Protagonist <br><br><span id="protag-name"></span><br><br><button id="regen-protag-name">Generate New Name</button></p><br>
+                    <p>Antagonist/Love Interest? <br><br><span id="antag-name"></span><br><br><button id="regen-antag-name">Generate New Name</button></p><br>
+                    <h3>Protagonist Stats</h3>
+                    <p>Bravery<br><input type="range" id="bravery" min="0" max="1" value=".5" step="0.01"></p>
+                    <p>Strength<br><input type="range" id="strength" min="0" max="1" value=".5" step="0.01"></p>
+                    <p>Charm<br><input type="range" id="charm" min="0" max="1" value=".5" step=".01"></p>
+                    <br><br>
+                </div>
+                <div class="col">
                     <h3>Story Details</h3>
                     <p>Genre<br>
                         <select id="genre">
@@ -46,11 +56,18 @@
                         cohesiveness. I recommend putting Genre Intensity up to 1.0 
                         if this is your goal.
                     </p>
-                    <h4>Descriptiveness</h4>
+                    <h4>Protagonist</h4>
                     <p>
-                        This value determines the likelihood of adjectives and adverbs 
-                        appearing throughout the story (while still following grammar 
-                        rules).
+                        Name generation is heavily dependent on Genre and Genre Intensity.
+                    </p>
+                    <h4>Antagonist</h4>
+                    <p>
+                        Name generation is heavily dependent on Genre and Genre Intensity.
+                    </p>
+                    <h4>Stats</h4>
+                    <p>
+                        Stats will affect story outcomes, with high bravery and strength often 
+                        resulting in successful encounters in the Fantasy and Horror genres.
                     </p>
                     <h4>Genre</h4>
                     <p>
@@ -63,6 +80,12 @@
                         This value affects how strictly the story draws from the genre-specific 
                         word pool. Values less than 1.0 (the maximum value) will sometimes fall 
                         back to the neutral language set.
+                    </p>
+                    <h4>Descriptiveness</h4>
+                    <p>
+                        This value determines the likelihood of adjectives and adverbs 
+                        appearing throughout the story (while still following grammar 
+                        rules).
                     </p>
                 </div>
             </div>

@@ -41,7 +41,7 @@ h4 {
 }
 
 button {
-    font-size: large;
+    font-size: 1vw;
     background-color: transparent;
 }
 
@@ -51,4 +51,8 @@ button:hover {
 
 button:active {
     color: rgb(134, 134, 134);
+}
+
+span {
+    font-size: 1.25vw;
 }

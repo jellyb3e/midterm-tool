@@ -12,6 +12,7 @@ function set_initial_state() {
     state.protag_at_antag = false;
     state.protag_at_home = false;
     state.peace_restored = false;
+    state.protag_defeated = false;
 
     state.met_love_interest = false;
     state.bond_formed = false;
@@ -164,4 +165,26 @@ function gen_advs(adv_type) {
     const arr = LANGUAGE[(hit()) ? selected_genre : GENRE.DEFAULT].adverbs[adv_type];
     const n = get_num_descriptors(max_advs);
     return rand_in_array_multiple(arr, n).join(", ");
+}
+
+function stat_check(action) {
+    if (!action.req_stats) return true;
+
+    const req_stats = action.req_stats;
+
+    for (let character in req_stats) {
+        for (let stat in req_stats[character]) {
+            const value = STATS[character][stat];
+            if (value < req_stats[character][stat]) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+function filter_goals_by_stats() {
+    const endings = GENRE_GOALS[selected_genre].filter(g => stat_check(g));
+    return rand_in_array(endings).goal;
 }

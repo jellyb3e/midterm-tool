@@ -10,31 +10,91 @@ const GENRE = {
     ROMANCE: "romance",
     DEFAULT: "default"
 }
+const STATS = {
+    protag: {
+        bravery: 1,
+        cowardice: 0,
+        strength: 1,
+        weakness: 0,
+        charm: 1,
+        awkwardness: 0
+    },
+    antag: {
+        bravery: 1,
+        cowardice: 0,
+        strength: 1,
+        weakness: 0,
+        charm: 1,
+        awkwardness: 0
+    }
+}
 
 let selected_genre = GENRE.FANTASY;
-let descriptiveness = 1.0;
-let genre_intensity = 0.5;
+let protag_name = "";
+let antag_name = "";
+let descriptiveness = 0.5;
+let genre_intensity = 1.0;
 const max_adjs = 2;
 const max_advs = 1;
 const state = {};
 
 const GENRE_GOALS = {
     [GENRE.FANTASY]: [
-        { peace_restored: true },
-        { protag_crowned: true },
-        { artifact_recovered: true }
+        {
+            goal: { peace_restored: true }
+        },
+        {
+            goal: { protag_crowned: true },
+            req_stats: {
+                protag: { charm: 0.6 }
+            }
+        },
+        {
+            goal: { artifact_recovered: true },
+            req_stats: {
+                protag: { bravery: 0.6 }
+            }
+        },
+        {
+            goal: { protag_defeated: true },
+            req_stats: {
+                protag: { cowardice: 0.7 }
+            }
+        }
     ],
-
     [GENRE.HORROR]: [
-        { peace_restored: true },
-        { protag_escaped: true },
-        { protag_corrupted: true }
+        {
+            goal: { peace_restored: true }
+        },
+        {
+            goal: { protag_escaped: true },
+            req_stats: {
+                protag: { bravery: 0.5 }
+            }
+        },
+        {
+            goal: { protag_corrupted: true },
+            req_stats: {
+                protag: { weakness: 0.6 }
+            }
+        }
     ],
-
     [GENRE.ROMANCE]: [
-        { relationship_started: true },
-        { relationship_rejected: true },
-        { friendship_formed: true }
+        {
+            goal: { friendship_formed: true }
+        },
+        {
+            goal: { relationship_started: true },
+            req_stats: {
+                protag: { charm: 0.6 }
+            }
+        },
+        {
+            goal: { relationship_rejected: true },
+            req_stats: {
+                protag: { awkwardness: 0.5 }
+            }
+        }
     ]
 };
 
@@ -119,6 +179,20 @@ const ACTION_LIB = [
             [GENRE.HORROR]: [
                 "{protag} {adv_movement}sneaks up on {antag} and {adv_character}strikes them down.",
                 "In a heated struggle, {protag} defeats {antag}."
+            ]
+        }
+    },
+    {
+        id: "coward_ending",
+        plot_point: PLOT.FAL,
+        genre: [GENRE.FANTASY],
+        prereq: { protag_at_antag: true },
+        effects: { protag_defeated: true },
+        set: (state) => { state.protag_defeated = true; },
+        text: {
+            [GENRE.FANTASY]: [
+                "{protag}, overcome with fear, fails to confront {antag}. Their hesitation leads to defeat, and the kingdom falls into uncertainty.",
+                "Unable to summon courage, {protag} flees, and {antag} seizes control of the land."
             ]
         }
     },

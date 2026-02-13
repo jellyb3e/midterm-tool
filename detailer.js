@@ -5,21 +5,35 @@ function generate_details() {
 
     const locations = rand_in_array_multiple((hit()) ? genre_lang.place_names : g_default.place_names,3);
     return {
-        protag: (hit()) 
-            ? (selected_genre == GENRE.FANTASY) 
-                ? generate_fantasy_name() 
-                : rand_in_array(("protag_names" in genre_lang) ? genre_lang.protag_names : g_default.protag_names)
-            : rand_in_array(g_default.protag_names),
-        antag: (hit()) 
-            ? (selected_genre != GENRE.ROMANCE) 
-                ? `the ${rand_in_array(genre_lang.antag_names.adjs)} ${rand_in_array(genre_lang.antag_names.nouns)}`
-                : rand_in_array(g_default.protag_names)
-            : rand_in_array(g_default.protag_names),
+        protag: protag_name,
+        antag: antag_name,
         antag_location: locations[1],
         weapon: rand_in_array((hit()) ? genre_lang.weapon_names : g_default.weapon_names),
         weapon_location: locations[0],
         start_location: locations[2]
     };
+}
+
+function generate_protag_name() {
+    const genre_lang = LANGUAGE[selected_genre];
+    const g_default = LANGUAGE[GENRE.DEFAULT];
+
+    protag_name = (hit()) 
+    ? (selected_genre == GENRE.FANTASY) 
+        ? generate_fantasy_name() 
+        : rand_in_array(("protag_names" in genre_lang) ? genre_lang.protag_names : g_default.protag_names)
+    : rand_in_array(g_default.protag_names);
+}
+
+function generate_antag_name() {
+    const genre_lang = LANGUAGE[selected_genre];
+    const g_default = LANGUAGE[GENRE.DEFAULT];
+
+    antag_name = (hit()) 
+    ? (selected_genre != GENRE.ROMANCE) 
+        ? `The ${rand_in_array(genre_lang.antag_names.adjs)} ${rand_in_array(genre_lang.antag_names.nouns)}`
+        : rand_in_array(g_default.protag_names)
+    : rand_in_array(g_default.protag_names);
 }
 
 function hit() {
